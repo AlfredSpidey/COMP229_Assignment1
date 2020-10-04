@@ -2,7 +2,228 @@
 <title>Alfredo Vieira Neto - <%= title %></title>
 
 <!-- CSS -->
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
 <style>
-	body 	{ padding-top:50px; }
+	body 	{ 
+		margin:0; 
+		font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+	}
+	.high 	{ 
+		height: 800px;
+		width: 100%;
+		background: url(assets/high.jpg) no-repeat center;
+		border-radius: 0 0 50% 50% / 4%;
+		text-align: center;
+		padding-top: 150px;
+		color: #fff;
+		font-size: 40px;
+	}
+	.header {
+		background: #00000000;
+		position: absolute;
+		width: 100%;
+		z-index: 99;
+	}
+	.navbar_header {
+		float: left;
+		padding: 15px;
+	}
+	.navbar_items {
+		margin: 0;
+		padding-top: 35px;
+	}
+	.navbar_logo {
+		background-image: url('assets/logo.png');
+		display: block;
+		width: 64px;
+		height: 64px;
+	}
+	.navbar_li {
+		display: inline-block;
+    	margin: 0 10px;
+	}
+	.navbar_a {
+		text-decoration: none;
+		font-weight: bold;
+		color: #fff;
+		margin-bottom: 10px;
+		display: block;
+		font-size: 18px;
+		height: 20px;
+	}
+	footer {
+		clear: left;
+		color: #fff;
+	}
+	.footer {
+		color: #fff;
+		width: 90%;
+		padding: 70px;
+		height: 200px;
+		background: #2e3149;
+		overflow: hidden;
+	}
+.footer_upper {
+	margin: 0 auto;
+    padding-left: 15px;
+	padding-right: 15px;
+	display: flex;
+}
+.footer__column {
+	margin: 0px 120px;
+  
+}
+.footer_down {
+	width: 90%;
+    text-align: center;
+}
+.text-center--white {
+    text-align: center;
+    color: #fff;
+}
+.footer__title {
+    border-bottom: 1px solid white;
+    padding: 0 10px 10px 10px;
+    font-size: 18px;
+}
+.footer__list-links {
+    padding: 0;
+    list-style: none;
+}
+.footer__list-links__item {
+    color: #fff;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: block;
+}
+.footer__list-links__item::before {
+    content: '>';
+    margin-right: 8px;
+    color: #fff;
+}
+
+.center_content {
+	margin: 200px;
+}
+
+.big_phrase {
+	text-align: center;
+    font-size: 40px;
+
+}
+.big_author {
+	text-align: right;
+    font-size: 30px;
+
+}
+.curved-bg-div {
+    background: url("assets/curved-bgg.jpg") no-repeat;
+    background-position: 0px -140px;
+    background-size: cover;
+    width: 100%;
+    height: 300px;
+}
+.normal_title {
+	text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #648cff;
+    font-size: 35px;
+}
+.link_text {
+	text-decoration: none;
+    font-size: 25px;
+    color: #648cff;
+}
+.about_me_img {
+	float: left;
+	height: 400px;
+	margin-right: 50px;
+	margin-bottom: 50px;
+	border-radius: 10px;
+	box-shadow: 0px 1px 3px #656565;
+} 
+#about_me_text {
+	font-size: 30px;
+	text-align: justify;
+}
+.project_container{
+	float: left;
+    width: 33.3333333333333%;
+    text-align: center;
+    margin-bottom: 100px;
+}
+.project_title {
+	font-size: 30px;
+	color: #648cff;
+}
+.project_text {
+	font-size: 20px;
+}
+.project_img{
+	width: 120px;
+	height: 120px;
+	border-radius: 20px;
+}
+.form {
+	background-color: #648cff;
+    padding: 40px 45px 40px 40px;
+    box-shadow: 0 3px 5px #989898;
+    border-radius: 5px;
+}
+
+.form__group {
+    float: left;
+	width: 100%;
+	margin-bottom: 15px;
+}
+.form__label {
+    color: #fff;
+}
+.form__input {
+    width: 100%;
+	border-radius: 5px;
+	border: none;
+    padding: 10px 5px;
+    max-width: 100%;
+    min-width: 100%;
+}
+button, input, optgroup, select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+}
+textarea {
+    overflow: auto;
+}
+.form__submit {
+    border: 3px solid #648cff;
+    border-radius: 300px;
+    background-color: #fff;
+    color: #648cff;
+    padding: 5px 20px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+	font-weight: bold;
+	font-size: 20px;
+    transform: translateY(-45px);
+    padding: 10px 30px;
+}
+.map {
+    background: #648cff;
+    height: 0;
+    padding-bottom: 400px;
+    position: relative;
+    overflow: hidden;
+    margin: 0 -15px -25px -25px;
+}
+.map iframe {
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 </style>
