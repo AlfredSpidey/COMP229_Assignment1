@@ -234,4 +234,65 @@ textarea {
     top: 0;
     left: 0;
 }
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  box-shadow: 1px 1px 5px grey;
+  border-radius: 5px;
+}
+
+#customers td, #customers th {
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #648cff;
+  color: white;
+}
+
+#table_corner_right{
+	border-radius: 0px 5px 0px 0px;
+}
+#table_corner_left{
+	border-radius: 5px 0px 0px 0px;
+}
+.btn_action {
+	background-color: white;
+    border-color: #648cff;
+	color: #648cff;
+    border-radius: 5px;
+    border-width: 1px;
+    border-style: solid;
+    width: 30px;
+    height: 30px;
+	cursor: pointer;
+}
+.delete {
+	border-color: #e94141;
+	color: #e94141;
+}
+.msg {
+	box-shadow: 1px 1px 3px #656565;
+    padding: 20px;
+    border-radius: 5px;
+	color:#fff;
+}
+.error {
+	background-color: rgb(216, 79, 79);
+}
+.success {
+	background-color: rgb(90, 194, 77);
+}
+.msg a {
+	text-decoration: none;
+    color: #575757;
+}
 </style>

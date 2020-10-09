@@ -1,0 +1,79 @@
+<!-- Created: Alfredo Vieira Neto
+Student Number: 301106786
+Subject: COMP229 - Web Application Development
+Date: 10/01/2020
+Institution: Centennial College
+Component: Bussiness Contacts List -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<% title="Bussiness Contacts List"; %>
+	<% include ../partials/head %>
+</head>
+<body class="container">
+
+	<header>
+		<% include ../partials/header %>
+	</header>
+
+	<main>
+        <div class="high">
+			<h1 class="high_title">Alfredo Vieira Neto</h1>
+			<p class="high_subtitle">Bussiness Contacts List</p>
+        </div>
+        
+        <div class="center_content">
+            <table id="customers">
+                <tr>
+                    <th id="table_corner_left">
+                        Contact Name
+                    </th>
+                    <th>
+                        Contact Username
+                    </th>
+                    <th>
+                        Contact Number
+                    </th>
+                    <th>
+                        Contact Email
+                    </th>
+                    <th style="text-align: center;">
+                        Edit
+                    </th>
+                    <th style="text-align: center;" id="table_corner_right">
+                        Delete
+                    </th>
+                </tr>
+                <% users.forEach(function(user) { %>
+                    <tr>
+                        <td>
+                            <%= user.name %>
+                        </td>
+                        <td>
+                            <%= user.username %>          
+                        </td>
+                        <td>
+                            <%= user.number %>                     
+                        </td>
+                        <td>
+                            <%= user.email %>
+                        </td>
+                        <td style="text-align: center;">
+                            <button type='button' onclick="productEdit('<%= JSON.stringify(user) %>');" class='btn_action'>✎</button>
+                        </td>
+                        <td style="text-align: center;">
+                            <button type='button' onclick="location.href='/bussiness_contacts/detele/<%= user._id %>';" class='btn_action delete'>✕</button>
+                        </td>
+                    </tr>
+                <% }); %>
+            </table>
+        </div>
+	</main>
+
+	<footer>
+		<% include ../partials/footer %>
+	</footer>
+	
+</body>
+</html>

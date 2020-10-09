@@ -1,0 +1,46 @@
+<!-- Created: Alfredo Vieira Neto
+Student Number: 301106786
+Subject: COMP229 - Web Application Development
+Date: 10/01/2020
+Institution: Centennial College
+Component: Login -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<% title="Login"; %>
+	<% include ../partials/head %>
+</head>
+<body class="container">
+
+	<header>
+		<% include ../partials/header %>
+	</header>
+
+	<main>
+		<div class="high">
+			<h1 class="high_title">Alfredo Vieira Neto</h1>
+			<p class="high_subtitle">Login</p>
+        </div>
+        <div class="center_content">
+            <%- message %>
+            <form class="form" method="post" action="/login">
+                <div class="form__group">
+                    <label class="form__label" >Username:</label>
+                    <input class="form__input" type="text" name="username">
+                </div>
+                <div class="form__group">
+                    <label class="form__label" >Password:</label>
+                    <input class="form__input" type="password" name="password">
+                </div>
+                <input style="transform: translateY(10px);" class="form__submit" type="submit" value="Login">
+            </form>
+        </div>
+	</main>
+
+	<footer>
+		<% include ../partials/footer %>
+	</footer>
+	
+</body>
+</html>

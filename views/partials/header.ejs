@@ -16,6 +16,14 @@ Component: Header -->
 		<li class="navbar_li"><a class="navbar_a" href="/projects">Projects</a></li>
 		<li class="navbar_li"><a class="navbar_a" href="/services">Services</a></li>
 		<li class="navbar_li"><a class="navbar_a" href="/contact">Contact</a></li>
+		<%if (logged) { %>
+			<li class="navbar_li"><a class="navbar_a" href="/bussiness_contacts">Bussiness Contacts List</a></li>
+			<li class="navbar_li"><a class="navbar_a" href="/logout">Log Out</a></li>
+		<% }else{ %>
+			<li class="navbar_li"><a class="navbar_a" href="/login">Log In</a></li>
+		<% } %>
+		
+		
 	</ul>
 </nav>
 </div>
