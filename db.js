@@ -15,8 +15,7 @@ module.exports = {
     deleteById: function(id) {
       return MongoClient.connect(uri).then(function(db) {
         var collection = db.db("AsaNetoComp229").collection('customers');
-        const _id = new ObjectID(id);
-        return collection.deleteOne( {_id:_id} );
+        return collection.deleteOne( {_id:id} );
       }).then(function(err, result) {
         return err;
       });
@@ -24,8 +23,7 @@ module.exports = {
     updateById: function(id, data) {
       return MongoClient.connect(uri).then(function(db) {
         var collection = db.db("AsaNetoComp229").collection('customers');
-        
-        return collection.updateOne( id , {"$set" : data});
+        return collection.updateOne( {_id:id} , {"$set" : data});
       }).then(function(resp) {
         console.log(resp);
       });

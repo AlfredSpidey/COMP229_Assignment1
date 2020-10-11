@@ -1,6 +1,7 @@
 // load the things we need
 var express = require('express');
 var app = express();
+var ObjectID = require('mongodb').ObjectID;
 
 
 var hash = require('pbkdf2-password')()
@@ -85,7 +86,7 @@ db.FindinCol1().then(function(items) {
   });
 
   app.get('/bussiness_contacts/detele/:id', function(req, res){
-    id = req.params.id;
+    let id = new ObjectId(req.params.id);
     db.deleteById(id).then(function(err) {
       console.log(err);
       db.FindinCol1().then(function(items) {
@@ -93,6 +94,21 @@ db.FindinCol1().then(function(items) {
         res.redirect('/bussiness_contacts');
       });
     });
+  });
+
+  app.post('/bussiness_contacts/edit/:id', function(req, res){
+    let data = req.body;
+    let id = new ObjectID(req.params.id);
+    data._id = id;
+    db.updateById(id, data).then(function(err) {
+      console.log(err);
+      db.FindinCol1().then(function(items) {
+        users = items;
+        res.redirect('/bussiness_contacts');
+      });
+    });
+
+
   });
 
   app.get('/logout', function(req, res){

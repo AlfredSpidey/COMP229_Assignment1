@@ -69,11 +69,68 @@ Component: Bussiness Contacts List -->
                 <% }); %>
             </table>
         </div>
+        <% include ../partials/edit %>
 	</main>
+    <script>
 
+        function productEdit(user_string){
+            let user = JSON.parse(user_string);
+            const backdrop = document.getElementById('backdrop');
+            const sidebar = document.getElementById('sidebar');
+            backdrop.style.display = 'block';
+            sidebar.style.display = 'block';
+            backdrop.addEventListener("click", function() {
+                backdrop.style.display = 'none';
+                sidebar.style.display = 'none';
+            });
+            sidebar.innerHTML = '';
+            let edit_form = document.createElement('FORM');
+            edit_form.className = 'form_sidebar';
+            edit_form.method = 'post';
+            edit_form.action = `/bussiness_contacts/edit/${user._id}`
+            for(attr in user){
+                switch(attr){
+                    case 'username':
+                        edit_form.innerHTML += `<div class="form__group">
+                                                        <label class="form__label" >Username:</label>
+                                                        <input class="form__input" type="text" name="username" value="${user[attr]}">
+                                                    </div>`;
+                        break;
+                    case 'pass':
+                    edit_form.innerHTML += `<div class="form__group">
+                                                        <label class="form__label" >Password:</label>
+                                                        <input class="form__input" type="text" name="pass" value="${user[attr]}">
+                                                    </div>`;
+                        break;
+                    case 'name':
+                    edit_form.innerHTML += `<div class="form__group">
+                                                        <label class="form__label" >Name:</label>
+                                                        <input class="form__input" type="text" name="name" value="${user[attr]}">
+                                                    </div>`;
+                        break;
+                    case 'number':
+                    edit_form.innerHTML += `<div class="form__group">
+                                                        <label class="form__label" >Number:</label>
+                                                        <input class="form__input" type="text" name="number" value="${user[attr]}">
+                                                    </div>`;
+                        break;
+                    case 'email':
+                    edit_form.innerHTML += `<div class="form__group">
+                                                        <label class="form__label" >Email:</label>
+                                                        <input class="form__input" type="text" name="email" value="${user[attr]}">
+                                                    </div>`;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            edit_form.innerHTML += `<input style="transform: translateY(10px);" class="form__submit" type="submit" value="Update">`;
+            sidebar.appendChild(edit_form);
+        }
+    </script>
 	<footer>
 		<% include ../partials/footer %>
 	</footer>
-	
 </body>
+
 </html>
