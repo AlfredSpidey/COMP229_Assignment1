@@ -7,7 +7,7 @@ module.exports = {
       return MongoClient.connect(uri).then(function(db) {
         var collection = db.db("AsaNetoComp229").collection('customers');
         
-        return collection.find().toArray();
+        return collection.find({ "name": { "$exists": true } }).sort({'name': 1}).toArray();
       }).then(function(items) {
         return items;
       });

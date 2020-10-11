@@ -72,7 +72,12 @@ Component: Bussiness Contacts List -->
         <% include ../partials/edit %>
 	</main>
     <script>
-
+        function closeBackdrop(){
+            const backdrop = document.getElementById('backdrop');
+            const sidebar = document.getElementById('sidebar');
+            backdrop.style.display = 'none';
+            sidebar.style.display = 'none';
+        }
         function productEdit(user_string){
             let user = JSON.parse(user_string);
             const backdrop = document.getElementById('backdrop');
@@ -80,8 +85,7 @@ Component: Bussiness Contacts List -->
             backdrop.style.display = 'block';
             sidebar.style.display = 'block';
             backdrop.addEventListener("click", function() {
-                backdrop.style.display = 'none';
-                sidebar.style.display = 'none';
+                closeBackdrop();
             });
             sidebar.innerHTML = '';
             let edit_form = document.createElement('FORM');
@@ -124,7 +128,9 @@ Component: Bussiness Contacts List -->
                         break;
                 }
             }
-            edit_form.innerHTML += `<input style="transform: translateY(10px);" class="form__submit" type="submit" value="Update">`;
+            edit_form.innerHTML += `<input style="transform: translateY(11px) translateX(-159px);" class="form__submit" type="submit" value="Update">
+            <input style="transform: translateY(-38px) translateX(5px); color: rgb(216, 79, 79);" onclick="location.href='/bussiness_contacts/detele/${user._id}';" class="form__submit" type="button" value="Delete">
+            <input style="transform: translate(170px, -87px); color: #575757;" onclick="closeBackdrop();" class="form__submit" type="button" value="Cancel">`;
             sidebar.appendChild(edit_form);
         }
     </script>

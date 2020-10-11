@@ -89,7 +89,7 @@ db.FindinCol1().then(function(items) {
   });
 
   app.get('/bussiness_contacts/detele/:id', function(req, res){
-    let id = new ObjectId(req.params.id);
+    let id = new ObjectID(req.params.id);
     db.deleteById(id).then(function(err) {
       console.log(err);
       db.FindinCol1().then(function(items) {
