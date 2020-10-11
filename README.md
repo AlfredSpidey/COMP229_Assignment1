@@ -1,7 +1,7 @@
-Assignment 1
+Assignment 2
 ========
 
-Using EJS to template a Node Web application.
+Using EJS to template a Node Web application with Login and Clients manegment.
 
 * Created: Alfredo Vieira Neto
 * Student Number: 301106786

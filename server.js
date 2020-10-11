@@ -1,3 +1,10 @@
+// Created: Alfredo Vieira Neto
+// Student Number: 301106786
+// Subject: COMP229 - Web Application Development
+// Date: 10/01/2020
+// Institution: Centennial College
+// Component: Server 
+
 // load the things we need
 var express = require('express');
 var app = express();
@@ -13,6 +20,7 @@ var logged = false;
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+// Loads the Database functions
 var db = require('./db');
 
 db.FindinCol1().then(function(items) {
@@ -94,6 +102,7 @@ db.FindinCol1().then(function(items) {
       console.log(err);
       db.FindinCol1().then(function(items) {
         users = items;
+        // It is important to re-hash the users data if you want to log in again
         hashUsers();
         res.redirect('/bussiness_contacts');
       });
@@ -108,6 +117,7 @@ db.FindinCol1().then(function(items) {
       console.log(err);
       db.FindinCol1().then(function(items) {
         users = items;
+        // It is important to re-hash the users data if you want to log in again
         hashUsers();
         res.redirect('/bussiness_contacts');
       });
