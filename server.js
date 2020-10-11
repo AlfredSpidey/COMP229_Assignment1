@@ -40,16 +40,19 @@ db.FindinCol1().then(function(items) {
 
   // when you create a user, generate a salt
   // and hash the password ('foobar' is the pass here)
-  users.forEach(user => {
-    hash({ password: user.pass }, function (err, pass, salt, hash) {
-      if (err) throw err;
-      // store the salt & hash in the "db"
-      user.salt = salt;
-      user.hash = hash;
-    });
-    
-  });
 
+  function hashUsers(){
+    users.forEach(user => {
+      hash({ password: user.pass }, function (err, pass, salt, hash) {
+        if (err) throw err;
+        // store the salt & hash in the "db"
+        user.salt = salt;
+        user.hash = hash;
+      });
+      
+    });
+  }
+  hashUsers();
   // Authenticate using our plain-object database of doom!
 
   function authenticate(name, pass, fn) {
@@ -91,6 +94,7 @@ db.FindinCol1().then(function(items) {
       console.log(err);
       db.FindinCol1().then(function(items) {
         users = items;
+        hashUsers();
         res.redirect('/bussiness_contacts');
       });
     });
@@ -104,6 +108,7 @@ db.FindinCol1().then(function(items) {
       console.log(err);
       db.FindinCol1().then(function(items) {
         users = items;
+        hashUsers();
         res.redirect('/bussiness_contacts');
       });
     });
