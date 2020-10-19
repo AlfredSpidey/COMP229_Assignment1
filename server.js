@@ -24,7 +24,8 @@ app.set('views', path.join(__dirname, 'views'));
 var db = require('./db');
 
 db.FindinCol1().then(function(items) {
-  var users = items;
+  var customers = items;
+  var users = [{username: 'user', pass: 'user', name: 'User'}];
 
   app.use(express.urlencoded({ extended: false }))
   app.use(session({
@@ -93,7 +94,7 @@ db.FindinCol1().then(function(items) {
   }
 
   app.get('/bussiness_contacts', restrict, function(req, res){
-    res.render('pages/bussiness_contacts', {users : users, logged: logged});
+    res.render('pages/bussiness_contacts', {users : customers, logged: logged});
   });
 
   app.get('/bussiness_contacts/detele/:id', function(req, res){
@@ -101,9 +102,7 @@ db.FindinCol1().then(function(items) {
     db.deleteById(id).then(function(err) {
       console.log(err);
       db.FindinCol1().then(function(items) {
-        users = items;
-        // It is important to re-hash the users data if you want to log in again
-        hashUsers();
+        customers = items;
         res.redirect('/bussiness_contacts');
       });
     });
@@ -116,14 +115,21 @@ db.FindinCol1().then(function(items) {
     db.updateById(id, data).then(function(err) {
       console.log(err);
       db.FindinCol1().then(function(items) {
-        users = items;
-        // It is important to re-hash the users data if you want to log in again
-        hashUsers();
+        customers = items;
         res.redirect('/bussiness_contacts');
       });
     });
+  });
 
-
+  app.post('/bussiness_contacts/add', function(req, res){
+    let data = req.body;
+    db.addCustomer(data).then(function(err) {
+      console.log(err);
+      db.FindinCol1().then(function(items) {
+        customers = items;
+        res.redirect('/bussiness_contacts');
+      });
+    });
   });
 
   app.get('/logout', function(req, res){
@@ -134,7 +140,7 @@ db.FindinCol1().then(function(items) {
       res.redirect('/');
     });
   });
-
+ 
   app.get('/login', function(req, res){
     res.render('pages/login', {logged: logged});
   });

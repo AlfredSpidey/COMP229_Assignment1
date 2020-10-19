@@ -24,6 +24,7 @@ Component: Bussiness Contacts List -->
         </div>
         
         <div class="center_content">
+            <button type='button' onclick="productAdd();" class='btn_action add'>+</button>
             <table id="customers">
                 <tr>
                     <th id="table_corner_left">
@@ -72,14 +73,14 @@ Component: Bussiness Contacts List -->
         <% include ../partials/edit %>
 	</main>
     <script>
+        window.scrollTo(0, 1100);
         function closeBackdrop(){
             const backdrop = document.getElementById('backdrop');
             const sidebar = document.getElementById('sidebar');
             backdrop.style.display = 'none';
             sidebar.style.display = 'none';
         }
-        function productEdit(user_string){
-            let user = JSON.parse(user_string);
+        function openBackdrop(){
             const backdrop = document.getElementById('backdrop');
             const sidebar = document.getElementById('sidebar');
             backdrop.style.display = 'block';
@@ -87,51 +88,62 @@ Component: Bussiness Contacts List -->
             backdrop.addEventListener("click", function() {
                 closeBackdrop();
             });
+        }
+        function generateForm(action, method, user = {username: '', name: '', number: '', email: ''}){
             sidebar.innerHTML = '';
             let edit_form = document.createElement('FORM');
             edit_form.className = 'form_sidebar';
             edit_form.method = 'post';
-            edit_form.action = `/bussiness_contacts/edit/${user._id}`
+            edit_form.action = action;
             for(attr in user){
                 switch(attr){
                     case 'username':
                         edit_form.innerHTML += `<div class="form__group">
                                                         <label class="form__label" >Username:</label>
-                                                        <input class="form__input" type="text" name="username" value="${user[attr]}">
-                                                    </div>`;
-                        break;
-                    case 'pass':
-                    edit_form.innerHTML += `<div class="form__group">
-                                                        <label class="form__label" >Password:</label>
-                                                        <input class="form__input" type="text" name="pass" value="${user[attr]}">
+                                                        <input class="form__input" type="text" name="username" value="${user[attr]}" required>
                                                     </div>`;
                         break;
                     case 'name':
                     edit_form.innerHTML += `<div class="form__group">
                                                         <label class="form__label" >Name:</label>
-                                                        <input class="form__input" type="text" name="name" value="${user[attr]}">
+                                                        <input class="form__input" type="text" name="name" value="${user[attr]}" required>
                                                     </div>`;
                         break;
                     case 'number':
                     edit_form.innerHTML += `<div class="form__group">
                                                         <label class="form__label" >Number:</label>
-                                                        <input class="form__input" type="text" name="number" value="${user[attr]}">
+                                                        <input class="form__input" type="text" name="number" value="${user[attr]}" required>
                                                     </div>`;
                         break;
                     case 'email':
                     edit_form.innerHTML += `<div class="form__group">
                                                         <label class="form__label" >Email:</label>
-                                                        <input class="form__input" type="text" name="email" value="${user[attr]}">
+                                                        <input class="form__input" type="text" name="email" value="${user[attr]}" required>
                                                     </div>`;
                         break;
                     default:
                         break;
                 }
             }
-            edit_form.innerHTML += `<input style="transform: translateY(11px) translateX(-159px);" class="form__submit" type="submit" value="Update">
+            if(method === 'add'){
+                edit_form.innerHTML += `<input style="transform: translateY(10px) translateX(-65px); padding: 10px 40px;" class="form__submit" type="submit" value="Create">
+            <input style="transform: translate(90px, -40px); color: #575757;" onclick="closeBackdrop();" class="form__submit" type="button" value="Cancel">`;
+            }else{
+                edit_form.innerHTML += `<input style="transform: translateY(11px) translateX(-159px);" class="form__submit" type="submit" value="Update">
             <input style="transform: translateY(-38px) translateX(5px); color: rgb(216, 79, 79);" onclick="location.href='/bussiness_contacts/detele/${user._id}';" class="form__submit" type="button" value="Delete">
             <input style="transform: translate(170px, -87px); color: #575757;" onclick="closeBackdrop();" class="form__submit" type="button" value="Cancel">`;
+            }
+            sidebar.innerHTML = `<p class="sidebar_title">${method === 'add' ? 'Create Contact' : 'Edit Contact'}</p>`;
             sidebar.appendChild(edit_form);
+        }
+        function productAdd(){
+            openBackdrop();
+            generateForm(`/bussiness_contacts/add`, 'add')
+        }
+        function productEdit(user_string){
+            let user = JSON.parse(user_string);
+            openBackdrop();
+            generateForm(`/bussiness_contacts/edit/${user._id}`, 'edit', user);
         }
     </script>
 	<footer>

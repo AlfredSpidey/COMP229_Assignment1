@@ -40,5 +40,13 @@ module.exports = {
         console.log(resp);
       });
     },
+    addCustomer: function(data) {
+      return MongoClient.connect(uri).then(function(db) {
+        var collection = db.db("AsaNetoComp229").collection('customers');
+        return collection.insertOne( data );
+      }).then(function(resp) {
+        console.log(resp);
+      });
+    },
   };
   
